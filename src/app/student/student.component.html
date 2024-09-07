@@ -1,1 +1,52 @@
-<p>student works!</p>
+<div class="container">
+    <div class="left-section">
+        @if (studentsData.length > 0) {
+        <div class="student-table">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Roll No</td>
+                        <td>Name</td>
+                        <td>Class</td>
+                        <td>Fees</td>
+                        <td>Age</td>
+                        <td>Address</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (student of studentsData; track $index) {
+                    <tr>
+                        <td>
+                            {{ student.roll_no }}
+                        </td>
+                        <td>
+                            {{ student.name }}
+                        </td>
+                        <td>
+                            {{ student.classCurrent }}
+                        </td>
+                        <td>
+                            {{ student.fees }}
+                        </td>
+                        <td>
+                            {{ student.age }}
+                        </td>
+                        <td>
+                            {{ student.address }}
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        }
+    </div>
+    <div class="right-section">
+        <h2>Add Student</h2>
+        <form [formGroup]="studentForm">
+            <fieldset>
+                <legend>Students Form</legend>
+            </fieldset>
+        </form>
+    </div>
+</div>
