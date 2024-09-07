@@ -22,12 +22,105 @@
 }
 
 .left-section {
-    border-right: 1.5px solid rgb(41, 33, 179);
+    border-right: 1.5px solid #2921b3;
 }
 
 .right-section {
-    border-left: 2px solid rgb(41, 33, 179);
+    border-left: 1.5px solid #2921b3;
+    display: flex;
+    flex-direction: column;
 }
+
+
+/* Form section */
+
+.form-section {
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.form-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+
+/* Form group */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+
+/* Labels */
+
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+
+/* Input fields */
+
+.form-group input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+}
+
+
+/* Submit button */
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* Style for disabled button */
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    /* Light gray for disabled state */
+    cursor: not-allowed;
+    /* Change cursor to indicate disabled */
+    color: #666666;
+    /* Optionally change text color */
+    opacity: 0.6;
+    /* Reduce opacity */
+}
+
+
+/* Table styling */
 
 .student-table {
     width: 100%;

@@ -31,6 +31,9 @@ export class StudentComponent implements OnInit {
     this.getAllStudentsData();
   }
 
+  /**
+   * get All students
+   */
   getAllStudentsData() {
     const observer: Observer<any> = {
       next: (value: any) => {
@@ -46,6 +49,44 @@ export class StudentComponent implements OnInit {
     };
 
     this.appService.getAllStudents()
+      .pipe(
+        catchError((err) => {
+          console.error('Error fetching student data:', err);
+          return of([]);
+        })
+      )
+      .subscribe(observer);
+  }
+
+  /**
+   * add new student
+   */
+  addStudent() {
+    console.log(`add data successful ! ${this.studentForm.value}`)
+    console.log(`form data received`);
+    const studentFomData = {
+      roll_no: this.studentForm.value.roll_no,
+      name: this.studentForm.value.name,
+      classCurrent: this.studentForm.value.class,
+      fees: this.studentForm.value.fees,
+      age: this.studentForm.value.age,
+      address: this.studentForm.value.address
+    }
+
+    const observer: Observer<any> = {
+      next: (value: any) => {
+        console.log(`student added succcessfully - ${value}`)
+      },
+      error: (err: any) => {
+        console.error('Error adding student data:', err);
+      },
+      complete: () => {
+        console.log('Student data added successfully');
+        this.studentForm.reset();
+      }
+    };
+
+    this.appService.handleAddStudent(studentFomData)
       .pipe(
         catchError((err) => {
           console.error('Error fetching student data:', err);
