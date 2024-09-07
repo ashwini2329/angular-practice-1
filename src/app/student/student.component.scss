@@ -123,9 +123,12 @@
 /* Table styling */
 
 .student-table {
-    width: 100%;
+    width: 95%;
     margin-top: 20px;
-    overflow-x: auto;
+    display: flex;
+    overflow-x: scroll;
+    height: 90%;
+    border-radius: 10px;
 }
 
 table {
