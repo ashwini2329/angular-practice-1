@@ -4,8 +4,8 @@ import { EmployeesComponent } from './employees/employees.component';
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'students', component: StudentComponent},
-  {path: 'employees', component: EmployeesComponent}
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'students', component: StudentComponent },
+  { path: 'employees', component: EmployeesComponent }
 ];
