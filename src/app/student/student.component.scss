@@ -45,6 +45,10 @@
     overflow-y: scroll;
 }
 
+.form-section::-webkit-scrollbar {
+    display: none;
+}
+
 .form-section h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -124,11 +128,15 @@
 
 .student-table {
     width: 95%;
-    margin-top: 20px;
     display: flex;
     overflow-x: scroll;
     height: 90%;
     border-radius: 10px;
+}
+
+.student-table::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, and Opera */
 }
 
 table {
