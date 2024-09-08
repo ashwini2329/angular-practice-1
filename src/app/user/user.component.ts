@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   constructor() {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required, Validators.maxLength(50)]),
-      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$')])
+      password: new FormControl('', [Validators.required])
     })
 
     this.signupForm = new FormGroup({
@@ -37,6 +37,7 @@ export class UserComponent implements OnInit {
   handleUserSignup() {
     console.log(this.signupForm.value);
     console.log('Signup form data received');
+    this.signupForm.reset();
   }
 
   toggleForm() {
