@@ -26,12 +26,19 @@ export class UserComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   handleUserLogin() {
     console.log(this.loginForm.value);
-    console.log(`login form data recieved`)
+    console.log('Login form data received');
+  }
+
+  handleUserSignup() {
+    console.log(this.signupForm.value);
+    console.log('Signup form data received');
+  }
+
+  toggleForm() {
+    this.alreadyUser = !this.alreadyUser; // Toggles between login and signup
   }
 }
