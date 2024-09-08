@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,11 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  public allowLinks:boolean = false;
+  constructor(private useService: UserService) {}
 
+  ngOnInit(): void {
+      this.allowLinks = this.useService.getAllowLinks();
+  }
 }

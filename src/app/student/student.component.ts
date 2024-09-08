@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AppServie } from '../app.service';
+import { AppServie } from '../services/app.service';
 import { Observer, catchError, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
-import { features } from 'process';
 
 @Component({
   selector: 'app-student',
