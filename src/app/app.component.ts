@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { StudentComponent } from './student/student.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { UserComponent } from './user/user.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { EmployeesComponent } from './employees/employees.component';
     HeaderComponent,
     HomeComponent,
     StudentComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    UserComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
