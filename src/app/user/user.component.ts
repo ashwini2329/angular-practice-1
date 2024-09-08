@@ -31,6 +31,7 @@ export class UserComponent implements OnInit {
   handleUserLogin() {
     console.log(this.loginForm.value);
     console.log('Login form data received');
+    this.loginForm.reset();
   }
 
   handleUserSignup() {
