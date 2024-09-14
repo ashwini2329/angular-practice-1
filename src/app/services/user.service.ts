@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 
 export class UserService {
@@ -16,6 +16,6 @@ export class UserService {
   }
 
   handleUserSignup(body: any) {
-    return this.http.post(`${this.apiUrl}/students//addStudent`, body)
+    return this.http.post(`${this.apiUrl}/students/addStudent`, body)
   }
 }
