@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="userForm">
+        <!-- Login Form -->
+        @if (alreadyUser) {
+        <form [formGroup]="loginForm" (ngSubmit)="handleUserLogin()">
+            <h1>Login</h1>
+            <div class="input-div">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" placeholder="Enter your email">
+            </div>
+            <div class="input-div">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="submit-btn" [disabled]="!loginForm.valid">Login</button>
+            <p>Not a user? <a (click)="toggleForm()">Sign up</a></p>
+        </form>
+        }
+
+        <!-- Signup Form -->
+        @if (!alreadyUser) {
+        <form [formGroup]="signupForm" (ngSubmit)="handleUserSignup()">
+            <h1>Sign Up</h1>
+            <div class="input-div">
+                <label for="name">Username</label>
+                <input type="text" formControlName="name" placeholder="Enter your username">
+            </div>
+            <div class="input-div">
+                <label for="email">Email</label>
+                <input type="email" formControlName="email" placeholder="Enter your email">
+            </div>
+            <div class="input-div">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" placeholder="Create a password">
+            </div>
+            <button type="submit" class="submit-btn" [disabled]="!signupForm.valid">Sign Up</button>
+            <p>Already a user? <a (click)="toggleForm()">Login</a></p>
+        </form>
+        }
+    </div>
+</div>
