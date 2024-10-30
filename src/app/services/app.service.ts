@@ -16,4 +16,8 @@ export class AppServie {
   handleAddStudent(body: { roll_no: any; name: any; classCurrent: any; fees: any; age: any; address: any; }): Observable<any> {
     return this.http.post(`${this.apiUrl}/students//addStudent`, body)
   }
+
+  handleUserSignup(body: { userId: string; email: string; password: string; }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/users/signup`, body)
+  }
 }

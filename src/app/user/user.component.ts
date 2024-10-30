@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError, Observer, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { AppServie } from '../services/app.service';
 
 @Component({
   selector: 'app-user',
@@ -15,7 +16,7 @@ export class UserComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
-  constructor() {
+  constructor(private appService: AppServie) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required, Validators.maxLength(50)]),
       password: new FormControl('', [Validators.required])
@@ -24,7 +25,7 @@ export class UserComponent implements OnInit {
     this.signupForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       email: new FormControl('', [Validators.email, Validators.required, Validators.maxLength(50)]),
-      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$')])
+      password: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$')])
     })
   }
 
@@ -39,32 +40,32 @@ export class UserComponent implements OnInit {
   handleUserSignup() {
     console.log(this.signupForm.value);
     const signupFormData = {
-      name: this.signupForm.get('name')?.value,
+      userId: this.signupForm.get('name')?.value,
       email: this.signupForm.get('email')?.value,
       password: this.signupForm.get('password')?.value
     }
     console.log(`Signup form data - ${signupFormData}`);
-    // const observer: Observer<any> = {
-    //   next: (value: any) => {
-    //     console.log(`User registered succcessfully - ${value}`)
-    //   },
-    //   error: (err: any) => {
-    //     console.error('Error registering User:', err);
-    //   },
-    //   complete: () => {
-    //     console.log('User registered succcessfully -');
-    //     this.signupForm.reset();
-    //   }
-    // };
+    const observer: Observer<any> = {
+      next: (value: any) => {
+        console.log(`User registered succcessfully - ${value}`)
+      },
+      error: (err: any) => {
+        console.error('Error registering User:', err);
+      },
+      complete: () => {
+        console.log('User registered succcessfully -');
+        this.signupForm.reset();
+      }
+    };
 
-    // this.userService.handleUserSignup(signupFormData)
-    //   .pipe(
-    //     catchError((err) => {
-    //       console.error('Error fetching student data:', err);
-    //       return of([]);
-    //     })
-    //   )
-    //   .subscribe(observer);
+    this.appService.handleUserSignup(signupFormData)
+      .pipe(
+        catchError((err) => {
+          console.error('Error fetching student data:', err);
+          return of([]);
+        })
+      )
+      .subscribe(observer);
   }
 
   toggleForm() {
