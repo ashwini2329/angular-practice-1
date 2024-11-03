@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 
-export class AppServie {
+export class AppService {
   constructor(private http: HttpClient) {}
   private apiUrl = 'http://localhost:8080';
 
@@ -19,5 +19,9 @@ export class AppServie {
 
   handleUserSignup(body: { userId: string; email: string; password: string; }): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/signup`, body)
+  }
+
+  handleUserSignIn(body: { email: any; password: any; }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/users/signin`, body)
   }
 }

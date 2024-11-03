@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppServie } from '../services/app.service';
+import { AppService } from '../services/app.service';
 import { Observer, catchError, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
@@ -15,7 +15,7 @@ export class StudentComponent implements OnInit {
   studentsData: any[] = [];
   studentForm: FormGroup;
 
-  constructor(private appService: AppServie) {
+  constructor(private appService: AppService) {
     this.studentForm = new FormGroup({
       roll_no: new FormControl(null, [Validators.required]),
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),

@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError, Observer, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { AppServie } from '../services/app.service';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-user',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
+  providers: [AppService],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -16,7 +17,7 @@ export class UserComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
-  constructor(private appService: AppServie) {
+  constructor(private appService: AppService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required, Validators.maxLength(50)]),
       password: new FormControl('', [Validators.required])
@@ -33,8 +34,26 @@ export class UserComponent implements OnInit {
 
   handleUserLogin() {
     console.log(this.loginForm.value);
-    console.log('Login form data received');
-    this.loginForm.reset();
+    const observer: Observer<any> = {
+      next: (value: any) => {
+        console.log(`User Logged in succcessfully - ${value}`)
+      },
+      error: (err: any) => {
+        console.error('Error logging in User:', err);
+      },
+      complete: () => {
+        console.log('User login completed succcessfully -');
+        this.loginForm.reset();
+      }
+    };
+    this.appService.handleUserSignIn({email: this.loginForm.value.email, password: this.loginForm.value.password})
+      .pipe(
+        catchError((error) => {
+          console.error(error);
+          return of(false);
+        })
+      )
+      .subscribe(observer)
   }
 
   handleUserSignup() {
@@ -61,7 +80,7 @@ export class UserComponent implements OnInit {
     this.appService.handleUserSignup(signupFormData)
       .pipe(
         catchError((err) => {
-          console.error('Error fetching student data:', err);
+          console.error('Error signing up user:', err);
           return of([]);
         })
       )
@@ -69,6 +88,6 @@ export class UserComponent implements OnInit {
   }
 
   toggleForm() {
-    this.alreadyUser = !this.alreadyUser; // Toggles between login and signup
+    this.alreadyUser = !this.alreadyUser;
   }
 }
