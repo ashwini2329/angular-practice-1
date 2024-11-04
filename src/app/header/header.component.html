@@ -1,12 +1,18 @@
 <div class="container">
-    <div class="left-section">
-        <h2>Basic MEAN stack Application</h2>
-    </div>
-    <div class="right-section">
-        <ul>
-            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-            <li><a routerLink="/students" routerLinkActive="active">Student</a></li>
-            <li><a routerLink="/employees" routerLinkActive="active">Employees</a></li>
-        </ul>
-    </div>
+  <div class="left-section">
+    <h2>MEAN Arena</h2>
+  </div>
+  <div class="right-section">
+    <ul>
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li *ngIf="isLoggedIn()"><a routerLink="/students" routerLinkActive="active">Students</a></li>
+      <li *ngIf="isLoggedIn()"><a routerLink="/employees" routerLinkActive="active">Employees</a></li>
+      <li *ngIf="!isLoggedIn()">
+        <button class="btn btn-primary logout" (click)="login()">Login</button>
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <button class="btn btn-primary logout" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+  </div>
 </div>

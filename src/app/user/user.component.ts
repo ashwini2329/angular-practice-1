@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { catchError, Observer, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { AppService } from '../services/app.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class UserComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required, Validators.maxLength(50)]),
       password: new FormControl('', [Validators.required])
@@ -37,6 +38,10 @@ export class UserComponent implements OnInit {
     const observer: Observer<any> = {
       next: (value: any) => {
         console.log(`User Logged in succcessfully - ${value}`)
+        if(value.token()) {
+          localStorage.setItem('token', value.token);
+          this.router.navigate(['/home']);
+        }
       },
       error: (err: any) => {
         console.error('Error logging in User:', err);
