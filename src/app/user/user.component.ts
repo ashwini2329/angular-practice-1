@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
   constructor(private appService: AppService, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required, Validators.maxLength(50)]),
-      password: new FormControl('', [Validators.required])
+      password: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$')])
     })
 
     this.signupForm = new FormGroup({
@@ -38,7 +38,7 @@ export class UserComponent implements OnInit {
     const observer: Observer<any> = {
       next: (value: any) => {
         console.log(`User Logged in succcessfully - ${value}`)
-        if(value.token()) {
+        if(value.token) {
           localStorage.setItem('token', value.token);
           this.router.navigate(['/home']);
         }
