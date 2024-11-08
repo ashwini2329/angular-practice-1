@@ -6,9 +6,9 @@ import { UserComponent } from './user/user.component';
 import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/user', pathMatch: 'full' },
-  { path: 'user', component: UserComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'user', component: UserComponent },
   { path: 'students', component: StudentComponent, canActivate: [AuthGuard], },
   { path: 'employees', component: EmployeesComponent, canActivate: [AuthGuard], }
 ];
