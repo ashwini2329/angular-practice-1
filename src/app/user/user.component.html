@@ -2,19 +2,26 @@
     <div class="userForm">
         <!-- Login Form -->
         @if (alreadyUser) {
-        <form [formGroup]="loginForm" (ngSubmit)="handleUserLogin()">
-            <h1>Login</h1>
-            <div class="input-div">
-                <label for="email">Email</label>
-                <input type="email" formControlName="email" placeholder="Enter your email">
+          @if (isSigningIn) {
+            <div >
+              <app-loader></app-loader>
             </div>
-            <div class="input-div">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password" placeholder="Enter your password">
-            </div>
-            <button type="submit" class="submit-btn" [disabled]="!loginForm.valid">Login</button>
-            <p>Not a user? <a (click)="toggleForm()">Sign up</a></p>
-        </form>
+          }
+          @if (!isSigningIn) {
+            <form [formGroup]="loginForm" (ngSubmit)="handleUserLogin()">
+              <h1>Login</h1>
+              <div class="input-div">
+                  <label for="email">Email</label>
+                  <input type="email" formControlName="email" placeholder="Enter your email">
+              </div>
+              <div class="input-div">
+                  <label for="password">Password</label>
+                  <input type="password" formControlName="password" placeholder="Enter your password">
+              </div>
+              <button type="submit" class="submit-btn" [disabled]="!loginForm.valid">Login</button>
+              <p>Not a user? <a (click)="toggleForm()">Sign up</a></p>
+          </form>
+          }
         }
 
         <!-- Signup Form -->

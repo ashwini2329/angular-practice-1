@@ -16,6 +16,7 @@ import { LoaderComponent } from '../shared/loader/loader.component';
 })
 export class UserComponent implements OnInit {
   isSigningUp = false;
+  isSigningIn = false;
   alreadyUser = true;
   loginForm: FormGroup;
   signupForm: FormGroup;
@@ -36,12 +37,14 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {}
 
   handleUserLogin() {
+    this.isSigningIn = true;
     console.log(this.loginForm.value);
     const observer: Observer<any> = {
       next: (value: any) => {
         console.log(`User Logged in succcessfully - ${value}`)
         if(value.token) {
           localStorage.setItem('token', value.token);
+          this.isSigningIn = false;
           this.router.navigate(['/home']);
         }
       },
