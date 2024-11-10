@@ -17,6 +17,8 @@ import { LoaderComponent } from '../shared/loader/loader.component';
 export class UserComponent implements OnInit {
   isSigningUp = false;
   isSigningIn = false;
+  signinError = false;
+  signinErrorValue = 'An error occured';
   alreadyUser = true;
   loginForm: FormGroup;
   signupForm: FormGroup;
@@ -41,7 +43,6 @@ export class UserComponent implements OnInit {
     console.log(this.loginForm.value);
     const observer: Observer<any> = {
       next: (value: any) => {
-        console.log(`User Logged in succcessfully - ${value}`)
         if(value.token) {
           localStorage.setItem('token', value.token);
           this.isSigningIn = false;
@@ -49,20 +50,24 @@ export class UserComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        console.error('Error logging in User:', err);
+        this.isSigningIn = false;
+        this.signinError = true;
+        this.signinErrorValue = err.error?.message || "An unknown error occurred";
+        setTimeout(() => {
+          this.signinError = false;
+        }, 2000);
+        this.loginForm.reset();
       },
       complete: () => {
         console.log('User login completed succcessfully -');
         this.loginForm.reset();
       }
     };
-    this.appService.handleUserSignIn({email: this.loginForm.value.email, password: this.loginForm.value.password})
-      .pipe(
-        catchError((error) => {
-          console.error(error);
-          return of(false);
-        })
-      )
+    this.appService.handleUserSignIn(
+      {
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      })
       .subscribe(observer)
   }
 
@@ -91,12 +96,6 @@ export class UserComponent implements OnInit {
     };
 
     this.appService.handleUserSignup(signupFormData)
-      .pipe(
-        catchError((err) => {
-          console.error('Error signing up user:', err);
-          return of([]);
-        })
-      )
       .subscribe(observer);
   }
 

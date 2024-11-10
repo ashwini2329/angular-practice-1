@@ -7,6 +7,11 @@
               <app-loader></app-loader>
             </div>
           }
+          @if (signinError) {
+            <div class="error-dialog-box">
+              <span>{{signinErrorValue}}</span>
+            </div>
+          }
           @if (!isSigningIn) {
             <form [formGroup]="loginForm" (ngSubmit)="handleUserLogin()">
               <h1>Login</h1>
