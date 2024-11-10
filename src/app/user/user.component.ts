@@ -4,16 +4,18 @@ import { catchError, Observer, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AppService } from '../services/app.service';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, LoaderComponent],
   providers: [AppService],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
 export class UserComponent implements OnInit {
+  isSigningUp = false;
   alreadyUser = true;
   loginForm: FormGroup;
   signupForm: FormGroup;
@@ -62,23 +64,26 @@ export class UserComponent implements OnInit {
   }
 
   handleUserSignup() {
+    this.isSigningUp = true;
     console.log(this.signupForm.value);
     const signupFormData = {
       userId: this.signupForm.get('name')?.value,
       email: this.signupForm.get('email')?.value,
       password: this.signupForm.get('password')?.value
     }
-    console.log(`Signup form data - ${signupFormData}`);
     const observer: Observer<any> = {
       next: (value: any) => {
         console.log(`User registered succcessfully - ${value}`)
       },
       error: (err: any) => {
         console.error('Error registering User:', err);
+        this.isSigningUp = false;
       },
       complete: () => {
         console.log('User registered succcessfully -');
         this.signupForm.reset();
+        this.isSigningUp = false;
+        this.alreadyUser = true;
       }
     };
 
