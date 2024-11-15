@@ -59,7 +59,6 @@ export class UserComponent implements OnInit {
         this.loginForm.reset();
       },
       complete: () => {
-        console.log('User login completed succcessfully -');
         this.loginForm.reset();
       }
     };
