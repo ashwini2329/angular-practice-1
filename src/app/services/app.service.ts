@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient,  } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 @Injectable({
@@ -23,5 +23,14 @@ export class AppService {
 
   handleUserSignIn(body: { email: any; password: any; }): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/signin`, body)
+  }
+
+  isTokenExpired(token: string): boolean {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])); // Decode the JWT payload
+      return payload.exp * 1000 < Date.now(); // Compare expiry with current time
+    } catch (e) {
+      return true;
+    }
   }
 }
