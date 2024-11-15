@@ -11,7 +11,6 @@
     background-color: #f4f4f4;
     flex-direction: column;
 }
-
 .student-header-section {
   margin: 10px 5px;
   position: relative;
@@ -20,11 +19,9 @@
   justify-content:space-around;
   align-items: center;
 }
-
 .add-student-button:hover  {
   background-color: rgb(57, 142, 145);
 }
-
 .add-student-button {
   width: 150px;
   height: 35px;
@@ -37,7 +34,6 @@
   color: white;
   background-color: cadetblue;
 }
-
 .left-section {
     width: 70%;
     height: 100%;
@@ -56,16 +52,10 @@
     align-items: center;
     background-color: #f4f4f4;
 }
-
-
 .right-section {
     display: flex;
     flex-direction: column;
 }
-
-
-/* Form section */
-
 .form-section {
     width: 80%;
     height: auto;
@@ -76,39 +66,25 @@
     height: 90%;
     overflow-y: scroll;
 }
-
 // .form-section::-webkit-scrollbar {
 //     display: none;
 // }
-
 .form-section h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #007bff;
 }
-
-
-/* Form group */
-
 .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
 }
-
-
-/* Labels */
-
 .form-group label {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
     color: #333;
 }
-
-
-/* Input fields */
-
 .form-group input {
     padding: 10px;
     font-size: 14px;
@@ -117,14 +93,9 @@
     outline: none;
     transition: border-color 0.3s ease;
 }
-
 .form-group input:focus {
     border-color: #007bff;
 }
-
-
-/* Submit button */
-
 .cancel-btn,
 .submit-btn {
     width: 49%;
@@ -137,26 +108,21 @@
     font-size: 16px;
     transition: background-color 0.3s ease;
 }
-
 .cancel-btn {
   margin-right: 5px;
 }
-
 .submit-btn {
   margin-left: 5px;
 }
-
 .submit-btn:hover {
     background-color: #0056b3;
 }
-
 .submit-btn:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
     color: #666666;
     opacity: 0.6;
 }
-
 .student-table {
     width: 95%;
     display: flex;
@@ -165,11 +131,9 @@
     height: 90%;
     border-radius: 10px;
 }
-
 // .student-table::-webkit-scrollbar {
 //     display: none;
 // }
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -177,41 +141,33 @@ table {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-
 thead {
     background-color: #007bff;
     color: #ffffff;
 }
-
 thead td {
     padding: 12px 15px;
     text-align: left;
     font-weight: bold;
 }
-
 tbody tr {
     transition: background-color 0.3s;
 }
-
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
-
 tbody tr:hover {
     background-color: #e2e6ea;
 }
-
 td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #dddddd;
 }
-
 tfoot {
     background-color: #f1f1f1;
     font-weight: bold;
 }
-
 tfoot td {
     padding: 12px 15px;
     text-align: right;
