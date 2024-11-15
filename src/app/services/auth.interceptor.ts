@@ -5,7 +5,6 @@ import { throwError } from 'rxjs';
 import { AuthServiceService } from './auth-service.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const appService = inject(AppService);
   const authService = inject(AuthServiceService)
   const loginUrls = `/users/signin`;
   const token = localStorage.getItem('token');
@@ -13,7 +12,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  if (token && !appService.isTokenExpired(token)) {
+  if (token && !authService.isTokenExpired(token)) {
     const cloned = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,

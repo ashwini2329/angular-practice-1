@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { StudentComponent } from './student/student.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { UserComponent } from './user/user.component';
+import { AuthServiceService } from './services/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,16 @@ import { UserComponent } from './user/user.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angular-practice-1';
+
+  constructor(private authService: AuthServiceService, private router: Router) {}
+
+  ngOnInit() {
+    if (!this.authService.autoLoginLogout()) {
+      this.authService.autoLoginLogout();
+    } else {
+      this.router.navigate(['/home'])
+    }
+  }
 }
