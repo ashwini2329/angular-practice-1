@@ -9,24 +9,56 @@
     justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
+    flex-direction: column;
 }
 
-.left-section,
-.right-section {
-    width: 50%;
+.student-header-section {
+  margin: 10px 5px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+
+.add-student-button:hover  {
+  background-color: rgb(57, 142, 145);
+}
+
+.add-student-button {
+  width: 150px;
+  height: 35px;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  background-color: cadetblue;
+}
+
+.left-section {
+    width: 70%;
     height: 100%;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #f4f4f4;
+}
+.right-section {
+    width: 70%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
 }
 
-.left-section {
-    border-right: 1.5px solid #2921b3;
-}
 
 .right-section {
-    border-left: 1.5px solid #2921b3;
     display: flex;
     flex-direction: column;
 }
@@ -45,9 +77,9 @@
     overflow-y: scroll;
 }
 
-.form-section::-webkit-scrollbar {
-    display: none;
-}
+// .form-section::-webkit-scrollbar {
+//     display: none;
+// }
 
 .form-section h2 {
     text-align: center;
@@ -93,8 +125,9 @@
 
 /* Submit button */
 
+.cancel-btn,
 .submit-btn {
-    width: 100%;
+    width: 49%;
     padding: 12px;
     background-color: #007bff;
     color: #fff;
@@ -105,39 +138,37 @@
     transition: background-color 0.3s ease;
 }
 
+.cancel-btn {
+  margin-right: 5px;
+}
+
+.submit-btn {
+  margin-left: 5px;
+}
+
 .submit-btn:hover {
     background-color: #0056b3;
 }
 
-
-/* Style for disabled button */
-
 .submit-btn:disabled {
     background-color: #cccccc;
-    /* Light gray for disabled state */
     cursor: not-allowed;
-    /* Change cursor to indicate disabled */
     color: #666666;
-    /* Optionally change text color */
     opacity: 0.6;
-    /* Reduce opacity */
 }
-
-
-/* Table styling */
 
 .student-table {
     width: 95%;
     display: flex;
     overflow-x: scroll;
+    overflow-y: scroll;
     height: 90%;
     border-radius: 10px;
 }
 
-.student-table::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, and Opera */
-}
+// .student-table::-webkit-scrollbar {
+//     display: none;
+// }
 
 table {
     width: 100%;

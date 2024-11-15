@@ -14,6 +14,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 export class StudentComponent implements OnInit {
   studentsData: any[] = [];
   studentForm: FormGroup;
+  toggleStudent: any;
 
   constructor(private appService: AppService) {
     this.studentForm = new FormGroup({
@@ -27,7 +28,13 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.toggleStudent = false;
     this.getAllStudentsData();
+  }
+
+  toggleStudentPage() {
+    this.toggleStudent = !this.toggleStudent;
+    console.log(this.toggleStudent)
   }
 
   /**
@@ -82,6 +89,8 @@ export class StudentComponent implements OnInit {
       complete: () => {
         console.log('Student data added successfully');
         this.studentForm.reset();
+        this.getAllStudentsData();
+        this.toggleStudent = !this.toggleStudent;
       }
     };
 
