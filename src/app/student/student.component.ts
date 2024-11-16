@@ -103,4 +103,9 @@ export class StudentComponent implements OnInit {
       )
       .subscribe(observer);
   }
+
+  deleteStudent(studentId: number): void {
+    console.log(`studentId -- ${studentId}`)
+  }
+
 }

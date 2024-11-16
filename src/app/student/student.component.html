@@ -19,6 +19,7 @@
               <td>Fees</td>
               <td>Age</td>
               <td>Address</td>
+              <td>Action</td>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +31,11 @@
               <td>{{ student.fees }}</td>
               <td>{{ student.age }}</td>
               <td>{{ student.address }}</td>
+              <td>
+                <button class="delete-btn" (click)="deleteStudent(student.roll_no)">
+                  Delete
+                </button>
+              </td>
             </tr>
             }
           </tbody>

@@ -12,12 +12,12 @@
     flex-direction: column;
 }
 .student-header-section {
-  margin: 10px 5px;
   position: relative;
   width: 100%;
   display: flex;
   justify-content:space-around;
   align-items: center;
+  top: 6vh;
 }
 .add-student-button:hover  {
   background-color: rgb(57, 142, 145);
@@ -42,6 +42,7 @@
     justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
+    top: 6vh;
 }
 .right-section {
     width: 70%;
@@ -173,3 +174,31 @@ tfoot td {
     text-align: right;
     border-top: 1px solid #dddddd;
 }
+
+.delete-btn {
+  width: 120px;
+  height: 35px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+.delete-btn:focus {
+  outline: none;
+}
+
+td button {
+  margin: 0;
+  padding: 0;
+}
+
