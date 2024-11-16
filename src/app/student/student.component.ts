@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../services/app.service';
 import { Observer, catchError, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
+import { StudentsServiceService } from '../services/students-service.service';
 
 @Component({
   selector: 'app-student',
@@ -16,7 +16,7 @@ export class StudentComponent implements OnInit {
   studentForm: FormGroup;
   toggleStudent: any;
 
-  constructor(private appService: AppService) {
+  constructor(private studentsService: StudentsServiceService) {
     this.studentForm = new FormGroup({
       roll_no: new FormControl(null, [Validators.required]),
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -54,7 +54,7 @@ export class StudentComponent implements OnInit {
       }
     };
 
-    this.appService.getAllStudents()
+    this.studentsService.getAllStudents()
       .pipe(
         catchError((err) => {
           console.error('Error fetching student data:', err);
@@ -94,7 +94,7 @@ export class StudentComponent implements OnInit {
       }
     };
 
-    this.appService.handleAddStudent(studentFomData)
+    this.studentsService.handleAddStudent(studentFomData)
       .pipe(
         catchError((err) => {
           console.error('Error fetching student data:', err);

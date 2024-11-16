@@ -1,9 +1,16 @@
 <div class="container">
   @if (!toggleStudent) {
     <div class="student-header-section">
-      <h2>Student Information</h2>
-      <div class="add-student">
-        <button class="add-student-button" (click)="toggleStudentPage()">Add Student</button>
+      <div class="left-student-header">
+        <span><h2>Student Information</h2></span>
+        <span class="search-student">
+          <input class="search-student-input" type="text" placeholder="Enter rollNo or name">
+        </span>
+      </div>
+      <div class="right-student-header">
+        <div class="add-student">
+          <button class="add-student-button" (click)="toggleStudentPage()">Add Student</button>
+        </div>
       </div>
     </div>
   }

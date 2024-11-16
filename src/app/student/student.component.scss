@@ -19,6 +19,32 @@
   align-items: center;
   top: 6vh;
 }
+.left-student-header,
+.right-student-header {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.left-student-header {
+  width: 70%;
+  justify-content: center;
+}
+.right-student-header {
+  width: 30%;
+  justify-content: flex-start;
+}
+.search-student {
+  margin-left: 15px;
+}
+.search-student-input {
+  width: 170px;
+  height: 32px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 3px;
+}
 .add-student-button:hover  {
   background-color: rgb(57, 142, 145);
 }
