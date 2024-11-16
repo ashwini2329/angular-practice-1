@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { deleteStudent } from '../shared/interfaces/deleteStudentInterface';
+import { addStudent } from '../shared/interfaces/addStudentInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,11 @@ export class StudentsServiceService {
     return this.http.get(`${this.apiUrl}/students/getAllStudents`);
   }
 
-  handleAddStudent(body: { roll_no: any; name: any; classCurrent: any; fees: any; age: any; address: any; }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/students//addStudent`, body)
+  handleAddStudent(body: addStudent): Observable<any> {
+    return this.http.post(`${this.apiUrl}/students/addStudent`, body)
+  }
+
+  handleDeleteStudent(body: deleteStudent): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/students/deleteStudent`, {body: body})
   }
 }
