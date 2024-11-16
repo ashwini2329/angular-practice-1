@@ -55,7 +55,9 @@ export class StudentComponent implements OnInit {
         this.isLoading = false;
       },
       complete: () => {
-        this.isLoading = false;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 500);
       }
     };
     this.studentsService.getAllStudents()
@@ -63,6 +65,7 @@ export class StudentComponent implements OnInit {
   }
 
   addStudent() {
+    this.isLoading = true;
     const studentFomData = {
       roll_no: this.studentForm.value.roll_no,
       name: this.studentForm.value.name,
