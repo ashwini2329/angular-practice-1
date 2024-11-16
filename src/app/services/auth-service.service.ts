@@ -13,7 +13,7 @@ export class AuthServiceService {
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/login'])
+    this.router.navigate(['/user'])
   }
 
   isTokenExpired(token: string): boolean {
