@@ -1,5 +1,8 @@
 <div class="container">
-  @if (!toggleStudent) {
+  @if (isLoading) {
+    <app-loader></app-loader>
+  }
+  @if (!toggleStudent && !this.isLoading) {
     <div class="student-header-section">
       <div class="left-student-header">
         <span><h2>Student Information</h2></span>
@@ -14,7 +17,7 @@
       </div>
     </div>
   }
-  @if (studentsData && studentsData.length > 0 && !toggleStudent) {
+  @if (studentsData && studentsData.length > 0 && !toggleStudent && !this.isLoading) {
     <div class="left-section">
       <div class="student-table">
         <table>
@@ -39,7 +42,7 @@
               <td>{{ student.age }}</td>
               <td>{{ student.address }}</td>
               <td>
-                <button class="delete-btn" (click)="deleteStudent(student.roll_no)">
+                <button class="delete-btn" (click)="confirmDeleteStudent(student)">
                   Delete
                 </button>
               </td>
@@ -49,6 +52,13 @@
         </table>
       </div>
     </div>
+  }
+
+  @if (showDialog) {
+    <app-dialog
+      [message]="'Are you sure you want to delete ' + selectedStudent.name + ' roll no ' + selectedStudent.roll_no + ' ?'"
+      (onConfirm)="handleDeleteStudent($event)">
+    </app-dialog>
   }
 
   @if (toggleStudent) {

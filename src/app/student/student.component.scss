@@ -127,7 +127,6 @@
 .submit-btn {
     width: 49%;
     padding: 12px;
-    background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -137,12 +136,19 @@
 }
 .cancel-btn {
   margin-right: 5px;
+  background-color: red;
+}
+.cancel-btn:hover {
+  background-color: #f33535;
+  transform: scale(1.05);
 }
 .submit-btn {
   margin-left: 5px;
+  background-color: #007bff;
 }
 .submit-btn:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 .submit-btn:disabled {
     background-color: #cccccc;
