@@ -22,9 +22,16 @@
       }
       @if (isLoggedIn()) {
         <li>
-          <button class="btn btn-primary logout" (click)="logout()">Logout</button>
+          <button class="btn btn-primary logout" (click)="confirmLogout()">Logout</button>
         </li>
       }
     </ul>
   </div>
 </div>
+
+@if (showDialog) {
+  <app-dialog
+    [message]="'Are you sure you want to logout ?'"
+    (onConfirm)="handleLogout($event)">
+  </app-dialog>
+}

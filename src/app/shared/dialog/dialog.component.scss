@@ -50,7 +50,17 @@
   color: white;
 }
 
+.btn-yes:hover {
+  background: #4ad84f;
+  transform: scale(1.1);
+}
+
 .btn-no {
   background: #f44336;
   color: white;
+}
+
+.btn-no:hover {
+  background: #fa1100;
+  transform: scale(1.1);
 }
