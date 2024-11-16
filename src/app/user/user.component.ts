@@ -40,7 +40,6 @@ export class UserComponent implements OnInit {
 
   handleUserLogin() {
     this.isSigningIn = true;
-    console.log(this.loginForm.value);
     const observer: Observer<any> = {
       next: (value: any) => {
         if(value.token) {
@@ -72,7 +71,6 @@ export class UserComponent implements OnInit {
 
   handleUserSignup() {
     this.isSigningUp = true;
-    console.log(this.signupForm.value);
     const signupFormData = {
       userId: this.signupForm.get('name')?.value,
       email: this.signupForm.get('email')?.value,
@@ -80,14 +78,11 @@ export class UserComponent implements OnInit {
     }
     const observer: Observer<any> = {
       next: (value: any) => {
-        console.log(`User registered succcessfully - ${value}`)
       },
       error: (err: any) => {
-        console.error('Error registering User:', err);
         this.isSigningUp = false;
       },
       complete: () => {
-        console.log('User registered succcessfully -');
         this.signupForm.reset();
         this.isSigningUp = false;
         this.alreadyUser = true;
