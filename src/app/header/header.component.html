@@ -5,14 +5,26 @@
   <div class="right-section">
     <ul>
       <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-      <li *ngIf="isLoggedIn()"><a routerLink="/students" routerLinkActive="active">Students</a></li>
-      <li *ngIf="isLoggedIn()"><a routerLink="/employees" routerLinkActive="active">Employees</a></li>
-      <li *ngIf="!isLoggedIn()">
-        <button class="btn btn-primary logout" (click)="login()">Login</button>
-      </li>
-      <li *ngIf="isLoggedIn()">
-        <button class="btn btn-primary logout" (click)="logout()">Logout</button>
-      </li>
+      @if (isLoggedIn()) {
+        <li>
+          <a routerLink="/students" routerLinkActive="active">Students</a>
+        </li>
+      }
+      @if (isLoggedIn()) {
+        <li>
+          <a routerLink="/employees" routerLinkActive="active">Employees</a>
+        </li>
+      }
+      @if (!isLoggedIn()) {
+        <li>
+          <button class="btn btn-primary logout" (click)="login()">Login</button>
+        </li>
+      }
+      @if (isLoggedIn()) {
+        <li>
+          <button class="btn btn-primary logout" (click)="logout()">Logout</button>
+        </li>
+      }
     </ul>
   </div>
 </div>
