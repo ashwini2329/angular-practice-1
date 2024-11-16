@@ -7,7 +7,13 @@
       <div class="left-student-header">
         <span><h2>Student Information</h2></span>
         <span class="search-student">
-          <input class="search-student-input" type="text" placeholder="Enter rollNo or name">
+          <input
+            #searchStudent
+            (keyup)="showFilteredStudents(searchStudent.value)"
+            class="search-student-input"
+            type="text"
+            placeholder="Search by rollNo or name"
+          >
         </span>
       </div>
       <div class="right-student-header">
@@ -33,20 +39,27 @@
             </tr>
           </thead>
           <tbody>
-            @for (student of studentsData; track $index) {
-            <tr>
-              <td>{{ student.roll_no }}</td>
-              <td>{{ student.name }}</td>
-              <td>{{ student.classCurrent }}</td>
-              <td>{{ student.fees }}</td>
-              <td>{{ student.age }}</td>
-              <td>{{ student.address }}</td>
-              <td>
-                <button class="delete-btn" (click)="confirmDeleteStudent(student)">
-                  Delete
-                </button>
-              </td>
-            </tr>
+            @if (filteredStudentsData.length > 0) {
+              @for (student of filteredStudentsData; track $index) {
+                <tr>
+                  <td>{{ student.roll_no }}</td>
+                  <td>{{ student.name }}</td>
+                  <td>{{ student.classCurrent }}</td>
+                  <td>{{ student.fees }}</td>
+                  <td>{{ student.age }}</td>
+                  <td>{{ student.address }}</td>
+                  <td>
+                    <button class="delete-btn" (click)="confirmDeleteStudent(student)">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              }
+            }
+            @else {
+              <tr>
+                <td colspan="7" class="no-results">No results found</td>
+              </tr>
             }
           </tbody>
         </table>

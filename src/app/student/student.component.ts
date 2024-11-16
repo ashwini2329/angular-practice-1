@@ -15,6 +15,7 @@ import { LoaderComponent } from "../shared/loader/loader.component";
 })
 export class StudentComponent implements OnInit {
   studentsData: any[] = [];
+  filteredStudentsData: any[] = [];
   studentForm: FormGroup;
   toggleStudent: any;
   isLoading = false;
@@ -48,6 +49,7 @@ export class StudentComponent implements OnInit {
     const observer: Observer<any> = {
       next: (value: any) => {
         this.studentsData = value.data;
+        this.filteredStudentsData = value.data;
       },
       error: (err: any) => {
         this.isLoading = false;
@@ -110,6 +112,19 @@ export class StudentComponent implements OnInit {
     } else {
       this.selectedStudent = {roll_no: 0, name: ''};
       this.showDialog = false;
+    }
+  }
+
+  showFilteredStudents(student: string) {
+    const value = student.trim();
+    if(Number(value)) {
+      this.filteredStudentsData = this.studentsData.filter((stud) => {
+        return stud.roll_no === Number(value) ? stud : '';
+      })
+    } else {
+      this.filteredStudentsData = this.studentsData.filter((stud) => {
+        return stud.name.toLowerCase().includes(student.toLowerCase()) ? stud : '';
+      })
     }
   }
 

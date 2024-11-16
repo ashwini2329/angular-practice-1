@@ -42,11 +42,16 @@
   height: 32px;
   border: 1px solid black;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   border-radius: 3px;
 }
 .add-student-button:hover  {
   background-color: rgb(57, 142, 145);
+}
+.no-results {
+  text-align: center;
+  font-style: italic;
+  color: #888;
 }
 .add-student-button {
   width: 150px;
