@@ -7,8 +7,9 @@ import { AuthServiceService } from './auth-service.service';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthServiceService)
   const loginUrls = `/users/signin`;
+  const signUpUrls = `users/signup`;
   const token = localStorage.getItem('token');
-  if (req.url.includes(loginUrls)) {
+  if (req.url.includes(loginUrls) || req.url.includes(signUpUrls)) {
     return next(req);
   }
 
