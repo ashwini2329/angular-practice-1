@@ -78,6 +78,7 @@ export class StudentComponent implements OnInit {
       next: (value: any) => {
       },
       error: (err: any) => {
+        this.getAllStudentsData();
       },
       complete: () => {
         this.studentForm.reset();
