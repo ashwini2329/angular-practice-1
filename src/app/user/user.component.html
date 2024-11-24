@@ -1,5 +1,10 @@
 <div class="container">
     <div class="userForm">
+      @if (isSuccess) {
+        <div class="success-dialog-box">
+          <span>{{successMessage}}</span>
+        </div>
+      }
         <!-- Login Form -->
         @if (alreadyUser) {
           @if (isSigningIn) {
@@ -34,6 +39,11 @@
           @if (isSigningUp) {
             <div >
               <app-loader></app-loader>
+            </div>
+          }
+          @if (signUpError) {
+            <div class="error-dialog-box">
+              <span>{{signUpErrorValue}}</span>
             </div>
           }
           @if (!isSigningUp) {

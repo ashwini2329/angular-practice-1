@@ -18,8 +18,12 @@ export class UserComponent implements OnInit {
   isSigningUp = false;
   isSigningIn = false;
   signinError = false;
-  signinErrorValue = 'An error occured';
+  isSuccess = false;
+  signUpError = false;
+  signinErrorValue = 'Error while Signing In !';
+  signUpErrorValue = 'Error while Signing Up !'
   alreadyUser = true;
+  successMessage = false;
   loginForm: FormGroup;
   signupForm: FormGroup;
 
@@ -78,8 +82,20 @@ export class UserComponent implements OnInit {
     }
     const observer: Observer<any> = {
       next: (value: any) => {
+        if(value.success) {
+          this.isSuccess = true;
+          this.successMessage = value.message;
+          setTimeout(() => {
+            this.isSuccess = false
+          }, 2000);
+        }
       },
       error: (err: any) => {
+        this.signUpError = true;
+        this.signUpErrorValue = err?.error?.message || 'An unknown error occurred';
+        setTimeout(() => {
+          this.signUpError = false;
+        }, 2000);
         this.isSigningUp = false;
       },
       complete: () => {
@@ -95,5 +111,7 @@ export class UserComponent implements OnInit {
 
   toggleForm() {
     this.alreadyUser = !this.alreadyUser;
+    this.signupForm.reset();
+    this.loginForm.reset();
   }
 }
