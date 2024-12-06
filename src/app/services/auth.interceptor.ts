@@ -1,5 +1,4 @@
 import { inject } from '@angular/core';
-import { AppService } from './app.service';
 import { HttpInterceptorFn } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { AuthServiceService } from './auth-service.service';
